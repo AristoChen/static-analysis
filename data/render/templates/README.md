@@ -42,12 +42,29 @@ Also check out the sister project, [awesome-dynamic-analysis](https://github.com
 
 # Programming Languages
 
+<style>
+table {
+    width:100%;
+}
+table th:nth-of-type(1) {
+    width: 15%;
+}
+table th:nth-of-type(2) {
+    width: 70%;
+}
+table th:nth-of-type(3) {
+    width: 15%;
+}
+</style>
+
 {%- for (language, linters) in linters %}
 
 <h2 id="{{ language.tag }}">{{ language.name }}</h2>
 
+|Name|Desctiprion|Note
+|----|-----------|----
 {% for linter in linters -%}
-- {% if linter.source.is_some() %}{{ linter.source.as_ref().unwrap()|format_badge }}{%endif%}[{{linter.name }}]({{linter.homepage }}){% if linter.deprecated.is_some() %} :warning:{% endif %}{% if linter.proprietary.is_some() %} :copyright:{% endif %} - {{ linter.description }}
+|[{{linter.name }}]({{linter.homepage }})|{{ linter.description }}|{% if linter.source.is_some() %}{{ linter.source.as_ref().unwrap()|format_badge }}{%endif%}{% if linter.deprecated.is_some() %} :warning:{% endif %}{% if linter.proprietary.is_some() %} :copyright:{% endif %}
 {% endfor %}
 
 {%- endfor %}
